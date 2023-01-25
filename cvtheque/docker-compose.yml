@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  dbs:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: '123'
+      POSTGRES_DB: 'cvtheque'
+    volumes:
+      - 'dbcv:/var/lib/postgresql/data'
+      - './db:/usr/local/src/'
+    ports:
+      - '5432:5432'
+
+
+volumes:
+  dbcv:
