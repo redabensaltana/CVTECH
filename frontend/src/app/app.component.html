@@ -1,124 +1,10 @@
-<!-- <div class=" w-full h-screen border border-green-500 p-5">
+<div class="w-full h-screen  p-5">
   <div class="flex flex-col">
     <div class="flex flex-row gap-4">
-      <div class="flex flex-col w-1/4 h-screen border border-red-600 p-4">
+      <div class="flex flex-col w-1/4 h-screen p-4">
         <ul class="flex flex-col gap-4">
           <li class="text-base">
-            <div class="flex justify-between border border-red-50 mb-3">
-              <h3 class="text-2xl font-bold">Information</h3>
-              <button class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-2 rounded"
-               *ngIf="openInformation"
-               (click) = "showInformation()" >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-              </button>
-              <button class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-2 rounded"
-              *ngIf="closeInformation"
-              (click) = "hideInformation()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-                </svg>
-              </button>
-            </div>
-
-            <form [formGroup] = "formGroupInfromation" *ngIf="informationStatus">
-            <div class="mb-3">
-            <input type="text" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Full Name" formControlName="fullname"  />
-            </div>
-            <div class="mb-3">
-            <input type="text" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Phone Number" formControlName="phone" />
-            </div>
-            <div class="mb-3">
-            <input type="text" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Your Location" formControlName="location" />
-            </div>
-            <div class="mb-3">
-            <input type="email" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Email" formControlName="email" />
-            </div>
-            <div class="mb-3">
-            <input type="text" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Github" formControlName="github" />
-            </div>
-            </form>
-          </li>
-          <li class="text-xl font-bold">Experience</li>
-          <li class="text-xl font-bold">Contact</li>
-        </ul>
-      </div>
-      <div class="flex flex-col w-3/4 h-screen border border-yellow-400 p-4">
-        <div class="bg-white rounded-lg p-6">
-  <div class="mb-4">
-    <img class="h-20 w-20 rounded-full mx-auto" src="assets/Images/ReadyPlayerMe-Avatar.png" alt="Profile Picture">
-    <h1 class="text-2xl font-medium text-center mt-2" >{{formGroupInfromation.value.fullname }}</h1>
-    <p class="text-center text-gray-600">Web Developer</p>
-  </div>
-  <div class="border-b border-gray-200 pb-4 mb-4">
-    <h2 class="text-lg font-medium">Contact Information</h2>
-    <div class="mt-2">
-      <p class="text-gray-600"><span class="text-black">Email: </span>{{formGroupInfromation.value.email}}</p>
-      <p class="text-gray-600"><span class="text-black">Phone: </span>{{formGroupInfromation.value.phone}}</p>
-      <p class="text-gray-600"><span class="text-black">Location: </span> {{formGroupInfromation.value.location}} </p>
-      <p class="text-gray-600"><span class="text-black">Github:</span> {{formGroupInfromation.value.github}}</p>
-    </div>
-  </div>
-
-  <div class="border-b border-gray-200 pb-4 mb-4">
-    <h2 class="text-lg font-medium">Work Experience</h2>
-    <div class="mt-2">
-      <div class="mb-4">
-        <h3 class="text-base font-medium">Internship at Innoveos company</h3>
-        <p class="text-gray-600">July - August 2022</p>
-        <ul class="list-disc pl-4 mt-2">
-          <li>Creating a web applection to manage event called MeDays</li>
-          <li>Implemented responsive design using React and Tailwind and PrimeReact</li>
-          <li>Collaborated with cross-functional teams to improve website's user experience</li>
-        </ul>
-      </div>
-      <div class="mb-4">
-        <h3 class="text-base font-medium">Internship at Marsa Maroc</h3>
-        <p class="text-gray-600">Mars 2020</p>
-        <ul class="list-disc pl-4 mt-2">
-          <li>Creating a application to manage the leaves</li>
-          <li>Developed and maintained company's application using C# ,.Net ,Microsoft Sql Server </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="border-b border-gray-200 pb-4 mb-4">
-    <h2 class="text-l font-medium">Education</h2>
-    <div class="mt-2">
-      <div class="mb-4">
-        <h3 class="text-base font-medium">Youcode </h3>
-        <p class="text-gray-600">specialized technician diploma in computer development</p>
-        <p class="text-gray-600">Graduated May 2017</p>
-      </div>
-    </div>
-    <div class="border-b border-gray-200 pb-4 mb-4">
-      <h2 class="text-l font-medium">Skills</h2>
-      <div class="mt-2">
-        <div class="mb-4">
-          <h3 class="text-base font-medium">Languages</h3>
-          <p class="text-gray-600">Java, CSS, JavaScript, PHP</p>
-        </div>
-        <div class="mb-4">
-          <h3 class="text-base font-medium">Frameworks</h3>
-          <p class="text-gray-600">React, Vue, Laravel, Spring Boot</p>
-        </div>
-        <div class="mb-4">
-          <h3 class="text-base font-medium">Tools</h3>
-          <p class="text-gray-600">Git, GitHub, WordPress, Photoshop</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="w-full h-screen border border-green-500 p-5">
-  <div class="flex flex-col">
-    <div class="flex flex-row gap-4">
-      <div class="flex flex-col w-1/4 h-screen border border-red-600 p-4">
-        <ul class="flex flex-col gap-4">
-          <li class="text-base">
-            <div class="flex justify-between border border-red-50 mb-3">
+            <div class="flex justify-between  mb-3">
               <h3 class="text-2xl font-bold">Information</h3>
               <button
                 class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-2 rounded"
@@ -249,49 +135,399 @@
                 </svg>
               </button>
             </div>
-            <!-- <form [formGroup]="formGroupEducation" *ngIf="educationStatus">
-              <div *ngFor="let item of items; let i = index">
-                <input
-                class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  [(ngModel)]="item.value"
-                  (input)="onChangeInupt($event, item.id)"
-                />
-                <button (click)="removeInput(i)">Remove</button>
-              </div>
-              <button (click)="addInput()">Add Input</button>
-            </form> -->
             <form [formGroup]="formGroupEducation" *ngIf="educationStatus">
               <div *ngFor="let item of items; let i = index">
                 <div class="input-group">
+                  <div class="mb-3">
+
                   <input
                     type="text"
                     class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mr-2"
                     [(ngModel)]="items[i].name"
                     (input)="onChangeInupt($event, item.id, 'name')"
                   />
+                  </div>
+                  <div class="mb-3">
                   <input
                     type="text"
                     class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     [(ngModel)]="items[i].description"
                     (input)="onChangeInupt($event, item.id, 'description')"
                   />
+                  </div>
+                  <div class="mb-3">
                   <input type="date"
                   class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   [(ngModel)]="items[i].date"
                   (input)="onChangeInupt($event, item.id, 'date')"
                   />
+                  </div>
+
                 </div>
-                <button (click)="removeInput(i)">Remove</button>
+              <div class="flex justify-end mb-2">
+                  <button class="bg-red-300 hover:bg-red-400 text-white font-bold py-2 px-4 rounded" (click)="removeInput(i)">
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
               </div>
-              <button (click)="addInput()">Add Input</button>
+
+
+              </div>
+                 <div class="flex justify-end ">
+
+              <button class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-4 rounded" (click)="addInput()">
+                <!-- add icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+
+              </button>
+
+              </div>
             </form>
           </li>
-          <li class="text-xl font-bold">Experience/li></li>
-          <li class="text-xl font-bold">Skills</li>
-          <li class="text-xl font-bold">Projects</li>
+          <li class="text-xl font-bold">
+            <!-- experience -->
+            <div class="flex justify-between border border-red-50 mb-3">
+              <h3 class="text-2xl font-bold">Experience</h3>
+              <button
+                class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-2 rounded"
+                *ngIf="openExperience"
+                (click)="showExperience()"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+              </button>
+              <button
+                class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-2 rounded"
+                *ngIf="closeExperience"
+                (click)="hideExperience()"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20 12H4"
+                  />
+                </svg>
+              </button>
+            </div>
+            <form [formGroup]="formGroupExperience" *ngIf="experienceStatus">
+              <div *ngFor="let item of experience; let i = index">
+                <div class="input-group">
+                  <div class="mb-3">
+                  <input
+                    type="text"
+                    class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mr-2"
+                    [(ngModel)]="experience[i].name"
+                    (input)="onChangeInuptExperience($event, item.id, 'name')"
+                    placeholder="Company Name"
+                  />
+                  </div>
+                  <div class="mb-3">
+                  <input
+                    type="text"
+                    class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    [(ngModel)]="experience[i].description"
+                    (input)="onChangeInuptExperience($event, item.id, 'description')"
+                    placeholder="Description"
+                  />
+                  </div>
+                  <div class="mb-3">
+                  <input type="date"
+                  class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  [(ngModel)]="experience[i].date"
+                  (input)="onChangeInuptExperience($event, item.id, 'date')"
+                  placeholder="Date"
+                  />
+                  </div>
+                  <div class="mb-3">
+                  <input type="text" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  [(ngModel)]="experience[i].location"
+                  (input)="onChangeInuptExperience($event, item.id, 'location')"
+                  placeholder="Location"
+                  />
+                  </div>
+                  <div class="mb-3">
+                  <input type="text" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  [(ngModel)]="experience[i].post"
+                  (input)="onChangeInuptExperience($event, item.id, 'post')"
+                  placeholder="Post"
+                  />
+                  </div>
+
+                </div>
+                <div class="flex justify-end mb-2">
+                  <button class="bg-red-300 hover:bg-red-400 text-white font-bold py-2 px-4 rounded" (click)="removeInputExperience(i)">
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+              </div>
+
+
+              </div>
+                 <div class="flex justify-end ">
+
+              <button class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-4 rounded" (click)="addInputExperience()">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+
+              </button>
+
+              </div>
+            </form>
+          </li>
+          <li class="text-xl font-bold">
+            <!-- skills -->
+            <div class="flex justify-between border border-red-50 mb-3">
+              <h3 class="text-2xl font-bold">Skills</h3>
+              <button
+                class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-2 rounded"
+                *ngIf="openSkills"
+                (click)="showSkills()"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+              </button>
+              <button
+                class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-2 rounded"
+                *ngIf="closeSkills"
+                (click)="hideSkills()"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20 12H4"
+                  />
+                </svg>
+              </button>
+            </div>
+            <form class="flex flex-col" *ngIf="closeSkills" [formGroup]="formGroupSkill">
+              <div class="mb-3" >
+                <input
+                  type="text"
+                  class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  placeholder="Skills"
+                  formControlName="skill"
+                />
+              </div>
+            </form>
+          </li>
+          <li class="text-xl font-bold">
+            <!-- projects -->
+            <div class="flex justify-between border border-red-50 mb-3">
+              <h3 class="text-2xl font-bold">Projects</h3>
+              <button
+                class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-2 rounded"
+                *ngIf="openProject"
+                (click)="showProject()"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+              </button>
+              <button
+                class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-2 rounded"
+                *ngIf="closeProject"
+                (click)="hideProject()"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20 12H4"
+                  />
+                </svg>
+              </button>
+            </div>
+            <form [formGroup]="formGroupProject" *ngIf="projectStatus">
+              <div *ngFor="let item of project; let i = index">
+                <div class="input-group">
+                  <div class="mb-3">
+                  <input
+                    type="text"
+                    class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mr-2"
+                    [(ngModel)]="project[i].name"
+                    (input)="onChangeInuptProject($event, item.id, 'name')"
+                    placeholder="Project Name"
+                  />
+                  </div>
+                  <div class="mb-3">
+                  <input
+                    type="text"
+                    class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    [(ngModel)]="project[i].description"
+                    (input)="onChangeInuptProject($event, item.id, 'description')"
+                    placeholder="Description"
+                  />
+                  </div>
+                  <div class="mb-3">
+                  <input type="text"
+                  class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  [(ngModel)]="project[i].languages"
+                  (input)="onChangeInuptProject($event, item.id, 'languages')"
+                  placeholder="Outils/Languages"
+                  />
+                  </div>
+                  </div>
+                <div class="flex justify-end mb-2">
+                  <button class="bg-red-300 hover:bg-red-400 text-white font-bold py-2 px-4 rounded" (click)="removeInputProject(i)">
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+              </div>
+
+
+              </div>
+                 <div class="flex justify-end ">
+
+              <button class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-4 rounded" (click)="addInputProject()">
+                <!-- add icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+
+              </button>
+
+              </div>
+
+              </form>
+
+
+          </li>
         </ul>
       </div>
-      <div class="flex flex-col w-3/4 h-screen border border-yellow-400 p-4">
+      <div class="flex flex-col w-3/4 h-screen p-4">
         <body class="flex justify-center content-center">
           <!-- outer container -->
           <div
@@ -417,34 +653,16 @@
                   </li>
                 </ul>
 
-                <!-- github stats -->
-                <strong class="text-xl font-medium">Github Stats</strong>
-                <ul class="flex w-full mt-2 mb-10">
-                  <li
-                    class="px-2 mt-2 w-4/12 bg-pink-600 text-white text-center rounded-tl-lg rounded-bl-lg"
-                  >
-                    HTML
-                  </li>
-                  <li
-                    class="px-2 mt-2 w-4/12 bg-blue-600 text-white text-center"
-                  >
-                    CSS
-                  </li>
-                  <li
-                    class="px-2 mt-2 w-5/12 bg-yellow-500 text-white text-center rounded-tr-lg rounded-br-lg"
-                  >
-                    JS
-                  </li>
-                </ul>
                 <!-- skills -->
-                <strong class="text-xl font-medium">Skills</strong>
+                <section *ngIf="formGroupSkill.value.skill != 'Skills'">
+                <strong class="text-xl font-medium" >Skills</strong>
                 <ul class="mt-2 mb-10">
-                  <li class="px-2 mt-1">HTML</li>
-                  <li class="px-2 mt-1">CSS</li>
-                  <li class="px-2 mt-1">TypeScript</li>
-                  <li class="px-2 mt-1">Angular</li>
-                  <li class="px-2 mt-1">Java</li>
+                  <!-- loop on split string function -->
+                  <li class="px-2 mt-1" *ngFor="let skill of splitString(formGroupSkill.value.skill)">
+                    {{skill}}
+                  </li>
                 </ul>
+                </section>
                 <!-- interests -->
                 <strong class="text-xl font-medium">Interests & Hobbies</strong>
                 <ul class="mt-2">
@@ -457,151 +675,48 @@
               </div>
               <!-- info -->
               <div class="w-4/6">
-                <section>
+                <section *ngIf=" project[0].name != ''">
                   <!-- projects -->
                   <h2 class="text-2xl mt-6 pb-1 border-b font-semibold">
                     Projects
                   </h2>
                   <ul class="mt-1">
-                    <li class="py-2">
+                    <li class="py-2" *ngFor="let pro of project">
                       <div class="flex justify-between my-1">
-                        <strong>First Project</strong>
+                        <strong>{{pro.name}}</strong>
                         <p class="flex">
-                          <span
-                            class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded"
-                            >Java</span
-                          >
-                          <span
-                            class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded"
-                            >Spring</span
-                          >
-                          <span
-                            class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded"
-                            >Angular</span
-                          >
+                          <span *ngFor="let lang of pro.arr"
+                          class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">
+                            {{lang}}
+                        </span>
                         </p>
                       </div>
 
                       <p class="text-xs">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Expedita delectus labore enim in minus quod vero
-                        dignissimos et, ratione obcaecati quis maiores?
-                        Voluptatem, natus cupiditate perferendis omnis ex hic
-                        incidunt! Earum dolore cupiditate sed et maxime
-                        distinctio iure fugiat aspernatur at veniam laudantium
-                        eveniet corporis dicta reiciendis quod consequatur,
-                        labore perferendis dolorum velit quibusdam minus iste
-                        dolorem! Officiis, obcaecati maxime
+                        {{pro.description}}
                       </p>
                     </li>
-                    <li class="py-2">
-                      <div class="flex justify-between my-1">
-                        <strong>Second Project </strong>
-                        <p class="flex">
-                          <span
-                            class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded"
-                            >Java</span
-                          >
-                          <span
-                            class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded"
-                            >Spring MVC</span
-                          >
-                          <span
-                            class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded"
-                            >Tailwind</span
-                          >
-                        </p>
-                      </div>
-                      <p class="text-xs">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Saepe expedita illum optio porro suscipit rerum labore
-                        veritatis autem eum totam veniam repudiandae repellendus
-                        perspiciatis eligendi sequi maiores, cum ipsa ut!
-                        Dolorum aliquid quaerat, dolore nemo, vero alias non
-                        porro quam totam impedit repellat voluptas, nobis harum
-                        quae dolorem accusantium consequatur. Recusandae
-                        cupiditate possimus natus consequuntur aliquid,
-                        molestias provident saepe nobis.
-                      </p>
-                    </li>
-                    <li class="py-2">
-                      <div class="flex justify-between my-1">
-                        <strong>Last Project</strong>
-                        <p class="flex">
-                          <span
-                            class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded"
-                            >Java</span
-                          >
-                          <span
-                            class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded"
-                            >Tailwind</span
-                          >
-                          <span
-                            class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded"
-                            >Html</span
-                          >
-                          <span
-                            class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded"
-                            >Css</span
-                          >
-                        </p>
-                      </div>
-                      <p class="text-xs">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Ducimus, odio autem non possimus adipisci, sed sequi
-                        culpa ipsa necessitatibus repellat rerum. Obcaecati
-                        nobis modi voluptate nam minus praesentium soluta
-                        voluptatibus! Minima temporibus deserunt laborum,
-                        expedita ad molestiae perferendis? Ipsa aut,
-                        necessitatibus expedita rem iure minus sit voluptates
-                        magni, sequi eum architecto excepturi tempora dolorum
-                        soluta quam odit amet nobis incidunt.
-                      </p>
-                    </li>
+
                   </ul>
                 </section>
-                <section>
+                <section *ngIf="experience[0].name != '' ">
                   <!-- work experiences -->
                   <h2 class="text-2xl mt-6 pb-1 border-b font-semibold">
                     Work Experiences
                   </h2>
                   <ul class="mt-2">
-                    <li class="pt-2">
+                    <li class="pt-2" *ngFor="let exp of experience">
                       <p class="flex justify-between text-sm">
-                        <strong class="text-base">Company Name</strong>2019-2021
+                        <strong class="text-base">{{exp.name}}</strong>{{exp.date}}
                       </p>
                       <p class="flex justify-between text-base">
-                        Job title<small>location</small>
+                        {{exp.post}}<small>{{exp.location}}</small>
                       </p>
                       <p class="text-justify text-xs">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Dolorum, expedita exercitationem, cum quisquam
-                        laboriosam voluptas aut libero officiis quae natus
-                        laborum explicabo, labore nobis porro ad et soluta
-                        deleniti. Rerum? Voluptatibus id officiis adipisci
-                        eligendi provident minima sed. Ullam aliquid, fuga nisi
-                        modi amet quasi, quod veniam eos sit culpa distinctio
-                        rem a tempora ad autem soluta rerum, doloremque quas?
+                        {{exp.description}}
                       </p>
                     </li>
-                    <li class="pt-2">
-                      <p class="flex justify-between text-sm">
-                        <strong class="text-base">Company Name</strong>2014-2019
-                      </p>
-                      <p class="flex justify-between text-base">
-                        Job title<small>location</small>
-                      </p>
-                      <p class="text-justify text-xs">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Delectus nemo fugiat neque tempore consectetur nihil
-                        alias ullam esse corporis fugit deserunt maxime, numquam
-                        eos repellendus, deleniti quae at fuga repudiandae!
-                        Perspiciatis odit nobis sunt! Natus ea reiciendis enim!
-                        Itaque possimus eaque perspiciatis architecto reiciendis
-                        laboriosam voluptas corporis unde ducimus quis aliquid,
-                        distinctio dolorum quo ullam a at, fugit veniam optio.
-                      </p>
-                    </li>
+
                   </ul>
                 </section>
                 <section *ngIf="items[0].name != ''">
