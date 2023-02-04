@@ -3,12 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EducationInputComponent } from './education-input/education-input.component';
+import { CvEditComponent } from './components/cv-edit/cv-edit.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EducationInputComponent
+    CvEditComponent,
+    NavbarComponent,
+    HomeComponent
+
   ],
   imports: [
     BrowserModule,
@@ -16,7 +23,13 @@ import { EducationInputComponent } from './education-input/education-input.compo
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
