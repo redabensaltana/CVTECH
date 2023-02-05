@@ -23,7 +23,6 @@ public class UserDTO {
     @NotNull
     @Size(max = 255)
     private String email;
-
     @NotNull
     @Size(max = 255)
     private String userTitle;
@@ -42,4 +41,7 @@ public class UserDTO {
     @Size(max = 255)
     private String github;
 
+    @NotNull
+    @Size(max = 255)
+    private String password;
 }

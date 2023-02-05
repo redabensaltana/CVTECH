@@ -1,7 +1,7 @@
-package dev.youcode.cvtheque.experience;
+package dev.youcode.cvtheque.rule;
 
 
-import dev.youcode.cvtheque.resume.Resume;
+import dev.youcode.cvtheque.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,15 +9,15 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class Experience {
+public class Rule {
 
     @Id
     @Column(nullable = false, updatable = false)
@@ -31,27 +31,13 @@ public class Experience {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Long expId;
+    private Long id;
 
-    @Column(nullable = false)
-    private String expName;
+    @Column(nullable = false, unique = true)
+    private String ruleName;
 
-    @Column(nullable = false)
-    private String position;
-
-    @Column(nullable = false)
-    private LocalDate startDate;
-
-    @Column
-    private LocalDate endDate;
-
-    @Column
-    private String tech;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resume_experience_id_id", nullable = false)
-    private Resume resumeExperienceId;
-
+    @ManyToMany(mappedBy = "userRuleIdRules")
+    private List<User> userRuleIdUsers;
 
 
 }

@@ -1,12 +1,14 @@
 package dev.youcode.cvtheque.project;
 
+
 import dev.youcode.cvtheque.resume.Resume;
 import dev.youcode.cvtheque.resume.ResumeRepository;
 import dev.youcode.cvtheque.util.NotFoundException;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service

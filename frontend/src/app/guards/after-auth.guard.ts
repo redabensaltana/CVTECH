@@ -14,7 +14,7 @@ export class AfterAuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean{
     if (this.localStorage.isLogin()){
-      this.router.navigateByUrl("/home")
+      this.router.navigateByUrl("/generatecv")
       this.accountService.changeStatus(true)
 
       return false;

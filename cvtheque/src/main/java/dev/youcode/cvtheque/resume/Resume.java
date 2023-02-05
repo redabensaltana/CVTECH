@@ -1,5 +1,6 @@
 package dev.youcode.cvtheque.resume;
 
+
 import dev.youcode.cvtheque.comment.Comment;
 import dev.youcode.cvtheque.education.Education;
 import dev.youcode.cvtheque.experience.Experience;
@@ -8,23 +9,15 @@ import dev.youcode.cvtheque.language.Language;
 import dev.youcode.cvtheque.project.Project;
 import dev.youcode.cvtheque.skill.Skill;
 import dev.youcode.cvtheque.user.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
-import java.time.OffsetDateTime;
-import java.util.Set;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.OffsetDateTime;
+import java.util.Set;
 
 
 @Entity
@@ -72,12 +65,6 @@ public class Resume {
     @OneToMany(mappedBy = "resumeCommentId")
     private Set<Comment> resumeCommentIdComments;
 
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
 
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }
