@@ -3,6 +3,7 @@ package dev.youcode.cvtheque.web;
 
 import dev.youcode.cvtheque.response.AuthResponse;
 import dev.youcode.cvtheque.user.UserDTO;
+import dev.youcode.cvtheque.user.UserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,12 +27,14 @@ public class AuthController {
     private JwtDecoder jwtDecoder;
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
+    private UserService userService;
 
-    public AuthController(JwtEncoder jwtEncoder, JwtDecoder jwtDecoder, AuthenticationManager authenticationManager, UserDetailsService userDetailsService) {
+    public AuthController(JwtEncoder jwtEncoder, JwtDecoder jwtDecoder, AuthenticationManager authenticationManager, UserDetailsService userDetailsService, UserService userService) {
         this.jwtEncoder = jwtEncoder;
         this.jwtDecoder = jwtDecoder;
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
+        this.userService = userService;
     }
 
     @PostMapping("/api/token")
@@ -45,6 +48,7 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword())
             );
             subject=authentication.getName();
+
             scope=authentication.getAuthorities()
                     .stream().map(aut -> aut.getAuthority())
                     .collect(Collectors.joining(" "));
@@ -57,8 +61,8 @@ public class AuthController {
                     .claim("scope",scope)
                     .build();
             String jwtAccessToken=jwtEncoder.encode(JwtEncoderParameters.from(jwtClaimsSet)).getTokenValue();
-
-            return new AuthResponse("Authentication succeeded!", jwtAccessToken);
+            Long id = userService.findUserByEmail(subject).getUserId();
+            return new AuthResponse("Authentication succeeded!", jwtAccessToken, id);
         }catch (AuthenticationException e){
             System.out.println(e.getMessage());
         }

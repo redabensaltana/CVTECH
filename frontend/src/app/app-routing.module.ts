@@ -5,12 +5,12 @@ import {GenerateCvComponent} from "./components/generate-cv/generate-cv.componen
 import {AuthComponent} from "./components/auth/auth.component";
 import {AfterAuthGuard} from "./guards/after-auth.guard";
 import {AuthGuard} from "./guards/auth.guard";
-
+import {CvEditComponent} from "./components/cv-edit/cv-edit.component";
 const routes: Routes = [
-  {path:"",redirectTo:"/login",pathMatch:'full'},
-  {path:"reigster", component:RegisterComponent},
-  {path:"login",  component: AuthComponent , canActivate: [AfterAuthGuard]},
-  {path:"generatecv",  component: GenerateCvComponent ,canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'reigster', component: RegisterComponent },
+  { path: 'login', component: AuthComponent, canActivate: [AfterAuthGuard] },
+  { path: 'generatecv', component: CvEditComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

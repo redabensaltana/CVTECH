@@ -22,8 +22,8 @@ export class AuthComponent {
     private accountService : AccountService
   ) {
     this.loginForm = this.fb.group({
-      email: ["youssef@gmail.com",[Validators.required,Validators.email]],
-      password: ["youssef1999",[Validators.required]]
+      email: ["you@gmail.com",[Validators.required,Validators.email]],
+      password: ["123",[Validators.required]]
     });
   }
   login(){
@@ -35,6 +35,7 @@ export class AuthComponent {
           if(res.status == 200){
             this.accountService.changeStatus(true)
             this.localStorageService.set("token",res.token);
+            this.localStorageService.set("id",res.id);
             this.router.navigateByUrl('/generatecv');
             console.log(res)
           }else{

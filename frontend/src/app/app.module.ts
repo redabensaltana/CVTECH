@@ -9,14 +9,17 @@ import { GenerateCvComponent } from './components/generate-cv/generate-cv.compon
 import {AuthComponent} from "./components/auth/auth.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AppInterceptor} from "./interceptors/app-interceptor.interceptor";
+import { CvEditComponent } from './components/cv-edit/cv-edit.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EducationInputComponent,
     RegisterComponent,
     GenerateCvComponent,
-    AuthComponent
+    AuthComponent,
+    CvEditComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
