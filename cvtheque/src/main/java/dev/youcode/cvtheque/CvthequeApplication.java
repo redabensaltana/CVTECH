@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 @EnableConfigurationProperties(RsakeysConfig.class)
 
-@ComponentScan(basePackages = {"dev.youcode.cvtheque.comment","dev.youcode.cvtheque.security","dev.youcode.cvtheque.user","dev.youcode.cvtheque.experience","dev.youcode.cvtheque.skill","dev.youcode.cvtheque.language","dev.youcode.cvtheque.rule","dev.youcode.cvtheque.web","dev.youcode.cvtheque.util", "dev.youcode.cvtheque.resume"})
+@ComponentScan(basePackages = {"dev.youcode.cvtheque.comment","dev.youcode.cvtheque.security","dev.youcode.cvtheque.user","dev.youcode.cvtheque.experience","dev.youcode.cvtheque.skill","dev.youcode.cvtheque.language","dev.youcode.cvtheque.rule","dev.youcode.cvtheque.web","dev.youcode.cvtheque.util", "dev.youcode.cvtheque.resume", "dev.youcode.cvtheque.education", "dev.youcode.cvtheque.project"})
 @Configuration
 
 public class CvthequeApplication {

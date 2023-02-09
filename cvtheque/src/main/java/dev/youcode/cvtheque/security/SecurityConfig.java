@@ -113,9 +113,9 @@ public class SecurityConfig {
                 List<SimpleGrantedAuthority> roles = new ArrayList<>();
                 try {
                     user = userService.findUserByEmail(email);
-                    for (Rule rule : user.getUserRuleIdRules()) {
-                        roles.add(new SimpleGrantedAuthority(rule.getRuleName()));
-                    }
+
+                        roles.add(new SimpleGrantedAuthority(user.getRole()));
+
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

@@ -40,10 +40,10 @@ public class Experience {
     private String position;
 
     @Column(nullable = false)
-    private LocalDate startDate;
+    private String startDate;
 
     @Column
-    private LocalDate endDate;
+    private String endDate;
 
     @Column
     private String tech;

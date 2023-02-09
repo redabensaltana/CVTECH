@@ -90,6 +90,7 @@ public class UserService {
         user.setLinkden(userDTO.getLinkden());
         user.setGithub(userDTO.getGithub());
         user.setPassword(userDTO.getPassword());
+        user.setRole(userDTO.getRole());
         return user;
     }
 

@@ -30,6 +30,11 @@ public class ResumeResource {
         return ResponseEntity.ok(resumeService.get(resumeId));
     }
 
+    @GetMapping("/{lname}")
+    public ResponseEntity<ResumeDTO> getResume(@PathVariable final String lname) {
+        return ResponseEntity.ok(resumeService.getByLastname(lname));
+    }
+
     @PostMapping
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Long> createResume(@RequestBody @Valid final ResumeDTO resumeDTO) {

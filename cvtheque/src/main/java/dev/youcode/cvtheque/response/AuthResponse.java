@@ -3,7 +3,7 @@ package dev.youcode.cvtheque.response;
 public class AuthResponse extends Response {
     private Long id;
     private String token;
-
+    private Long resume_id;
     public AuthResponse() {
     }
 
@@ -17,16 +17,23 @@ public class AuthResponse extends Response {
         super(message, status);
     }
 
-    public AuthResponse(String message, Integer status, String token, Long id) {
+    public AuthResponse(String message, Integer status, String token, Long id, Long resume_id) {
         super(message, status);
         this.token = token;
         this.id = id;
+        this.resume_id = resume_id;
     }
 
     public AuthResponse(String message, String token, Long id) {
         super(message);
         this.token = token;
         this.id = id;
+    }
+    public AuthResponse(String message, String token, Long id, Long resume_id) {
+        super(message);
+        this.token = token;
+        this.id = id;
+        this.resume_id = resume_id;
     }
 
     public String getToken() {
@@ -37,7 +44,15 @@ public class AuthResponse extends Response {
     public void setToken(String token) {
         this.token = token;
     }
-    public void setToken(Long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getResume_id() {
+        return resume_id;
+    }
+
+    public void setResume_id(Long resume_id) {
+        this.resume_id = resume_id;
     }
 }

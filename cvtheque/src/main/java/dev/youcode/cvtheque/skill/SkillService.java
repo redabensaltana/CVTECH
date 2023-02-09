@@ -1,6 +1,7 @@
 package dev.youcode.cvtheque.skill;
 
 
+import com.fasterxml.jackson.databind.util.BeanUtil;
 import dev.youcode.cvtheque.resume.Resume;
 import dev.youcode.cvtheque.resume.ResumeRepository;
 import dev.youcode.cvtheque.util.NotFoundException;
@@ -62,6 +63,7 @@ public class SkillService {
     }
 
     private Skill mapToEntity(final SkillDTO skillDTO, final Skill skill) {
+
         skill.setSkillType(skillDTO.getSkillType());
         skill.setSkillName(skillDTO.getSkillName());
         final Resume resumeSkillId = skillDTO.getResumeSkillId() == null ? null : resumeRepository.findById(skillDTO.getResumeSkillId())

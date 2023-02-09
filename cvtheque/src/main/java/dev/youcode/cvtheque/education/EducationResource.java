@@ -34,6 +34,7 @@ public class EducationResource {
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Long> createEducation(
             @RequestBody @Valid final EducationDTO educationDTO) {
+        System.out.println(educationDTO.getEducId()  + " " + educationDTO.getEduName());
         return new ResponseEntity<>(educationService.create(educationDTO), HttpStatus.CREATED);
     }
 

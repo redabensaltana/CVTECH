@@ -39,7 +39,7 @@ public class UserResource {
         return ResponseEntity.ok(userService.get(userId));
     }
     @GetMapping("/dataTest")
-    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_DEV')")
     public Map<String, Object> dataTest(Authentication authentication){
         return Map.of(
                 "message","Data test",
@@ -51,10 +51,19 @@ public class UserResource {
     @PostMapping("/register")
     @ApiResponse(responseCode = "201")
     public Response createUser(@RequestBody @Valid final UserDTO userDTO) {
+        if(!userDTO.getUserTitle().equals("CME"))
+        {
+            userDTO.setRole("DEV");
+        }
+        else {
+            userDTO.setRole("CME");
+        }
         Long id  = userService.create(userDTO);
-        ResumeDTO resumeDTO = new ResumeDTO();
-        resumeDTO.setUserResumeId(id);
-        resumeService.create(resumeDTO);
+        if(userDTO.getRole().equals("DEV")) {
+            ResumeDTO resumeDTO = new ResumeDTO();
+            resumeDTO.setUserResumeId(id);
+            resumeService.create(resumeDTO);
+        }
         Response response = new Response("User created successfully", 201);
         return response;
     }

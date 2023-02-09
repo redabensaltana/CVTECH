@@ -68,7 +68,8 @@ public class User {
 
     @OneToOne(mappedBy = "userResumeId", fetch = FetchType.LAZY)
     private Resume userResumeId;
-
+    @Column
+    private String role;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
     @JoinTable(

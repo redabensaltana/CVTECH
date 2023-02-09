@@ -7,6 +7,7 @@ export class SaveService {
 
   constructor(private http : HttpClient ) { }
 
+
   saveEducation(education : any){
     return this.http.post('http://localhost:8080/api/educations', education);
   }
@@ -19,6 +20,6 @@ export class SaveService {
   saveSkills(skills : any){
     return this.http.post('http://localhost:8080/api/skills', skills);
   }
- 
+
 
 }

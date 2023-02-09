@@ -1,4 +1,4 @@
-
+<app-navbar></app-navbar>
 <div class="w-full h-screen  p-5">
   <div class="flex flex-col">
     <div class="flex flex-row gap-4">
@@ -150,17 +150,17 @@
                   </div>
                   <div class="mb-3">
                   <input
-                    type="text"
+                    type="date"
                     class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    [(ngModel)]="items[i].description"
-                    (input)="onChangeInupt($event, item.educId, 'description')"
+                    [(ngModel)]="items[i].startDate"
+                    (input)="onChangeInupt($event, item.educId, 'startDate')"
                   />
                   </div>
                   <div class="mb-3">
                   <input type="date"
                   class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  [(ngModel)]="items[i].date"
-                  (input)="onChangeInupt($event, item.educId, 'date')"
+                  [(ngModel)]="items[i].andDate"
+                  (input)="onChangeInupt($event, item.educId, 'andDate')"
                   />
                   </div>
 
@@ -187,9 +187,9 @@
 
 
               </div>
-                 <div class="flex justify-end ">
+                 <div class="flex justify-end gap-4 ">
 
-              <button class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-4 rounded" (click)="addInput()">
+              <button class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-4 rounded " (click)="addInput()">
                 <!-- add icon -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -284,39 +284,39 @@
                   <input
                     type="text"
                     class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mr-2"
-                    [(ngModel)]="experience[i].name"
-                    (input)="onChangeInuptExperience($event, item.id, 'name')"
-                    placeholder="Company Name"
+                    [(ngModel)]="experience[i].expName"
+                    (input)="onChangeInuptExperience($event, item.id, 'expName')"
+                    placeholder="Experience Name"
                   />
                   </div>
                   <div class="mb-3">
                   <input
                     type="text"
                     class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    [(ngModel)]="experience[i].description"
-                    (input)="onChangeInuptExperience($event, item.id, 'description')"
+                    [(ngModel)]="experience[i].tech"
+                    (input)="onChangeInuptExperience($event, item.id, 'tech')"
                     placeholder="Description"
                   />
                   </div>
                   <div class="mb-3">
                   <input type="date"
                   class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  [(ngModel)]="experience[i].date"
-                  (input)="onChangeInuptExperience($event, item.id, 'date')"
-                  placeholder="Date"
+                  [(ngModel)]="experience[i].startDate"
+                  (input)="onChangeInuptExperience($event, item.id, 'startDate')"
+                  placeholder="Start Date"
+                  />
+                  </div>
+                  <div class="mb-3">
+                  <input type="date" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  [(ngModel)]="experience[i].endDate"
+                  (input)="onChangeInuptExperience($event, item.id, 'endDate')"
+                  placeholder="End Date"
                   />
                   </div>
                   <div class="mb-3">
                   <input type="text" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  [(ngModel)]="experience[i].location"
-                  (input)="onChangeInuptExperience($event, item.id, 'location')"
-                  placeholder="Location"
-                  />
-                  </div>
-                  <div class="mb-3">
-                  <input type="text" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  [(ngModel)]="experience[i].post"
-                  (input)="onChangeInuptExperience($event, item.id, 'post')"
+                  [(ngModel)]="experience[i].position"
+                  (input)="onChangeInuptExperience($event, item.id, 'position')"
                   placeholder="Post"
                   />
                   </div>
@@ -344,7 +344,7 @@
 
 
               </div>
-                 <div class="flex justify-end ">
+                 <div class="flex justify-end gap-4">
 
               <button class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-4 rounded" (click)="addInputExperience()">
                 <svg
@@ -362,6 +362,27 @@
                   />
                 </svg>
 
+              </button>
+              <!-- save button -->
+              <button
+                class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
+                (click)="saveExperience()"
+              >
+                <!-- save icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
               </button>
 
               </div>
@@ -421,6 +442,25 @@
                   formControlName="skill"
                 />
               </div>
+              <div class="flex justify-end mb-2">
+                <button class="bg-red-300 hover:bg-red-400 text-white font-bold py-2 px-4 rounded" (click)="saveSkills()">
+                  <!-- save icon -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </button>
+            </div>
             </form>
           </li>
           <li class="text-xl font-bold">
@@ -475,7 +515,7 @@
                   <input
                     type="text"
                     class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mr-2"
-                    [(ngModel)]="project[i].name"
+                    [(ngModel)]="project[i].proTitle"
                     (input)="onChangeInuptProject($event, item.id, 'name')"
                     placeholder="Project Name"
                   />
@@ -484,7 +524,7 @@
                   <input
                     type="text"
                     class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    [(ngModel)]="project[i].description"
+                    [(ngModel)]="project[i].discription"
                     (input)="onChangeInuptProject($event, item.id, 'description')"
                     placeholder="Description"
                   />
@@ -492,7 +532,7 @@
                   <div class="mb-3">
                   <input type="text"
                   class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  [(ngModel)]="project[i].languages"
+                  [(ngModel)]="project[i].techs"
                   (input)="onChangeInuptProject($event, item.id, 'languages')"
                   placeholder="Outils/Languages"
                   />
@@ -520,7 +560,7 @@
 
 
               </div>
-                 <div class="flex justify-end ">
+                 <div class="flex justify-end gap-4 ">
 
               <button class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-4 rounded" (click)="addInputProject()">
                 <!-- add icon -->
@@ -536,6 +576,25 @@
                     stroke-linejoin="round"
                     stroke-width="2"
                     d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+
+              </button>
+
+              <button class="bg-blue-300 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded" (click)="saveProject()">
+                <!-- add icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
                   />
                 </svg>
 
@@ -644,8 +703,8 @@
                   ></div>
                 </div>
                 <div class="grid justify-items-end">
-                  <h1 class="text-7xl font-extrabold">{{formGroupInfromation.value.fullname }}</h1>
-                  <p class="text-xl mt-5">Web Developer</p>
+                  <h1 class="text-7xl font-extrabold">{{userInformation.firstName}} {{userInformation.lastName}}</h1>
+                  <p class="text-xl mt-5">{{userInformation.userTitle}}</p>
                 </div>
               </div>
             </header>
@@ -658,19 +717,19 @@
                   <li class="px-2 mt-1">
                     <strong class="mr-1">Phone </strong>
                     <a href="tel:+821023456789" class="block">{{
-                      formGroupInfromation.value.phone
+                      userInformation.tel
                     }}</a>
                   </li>
                   <li class="px-2 mt-1">
                     <strong class="mr-1">E-mail </strong>
                     <a href="mailto:" class="block">{{
-                      formGroupInfromation.value.email
+                      userInformation.email
                     }}</a>
                   </li>
                   <li class="px-2 mt-1">
                     <strong class="mr-1">Location</strong
                     ><span class="block">{{
-                      formGroupInfromation.value.location
+                      userInformation.address
                     }}</span>
                   </li>
                 </ul>
@@ -697,7 +756,7 @@
               </div>
               <!-- info -->
               <div class="w-4/6">
-                <section *ngIf=" project[0].name != ''">
+                <section *ngIf=" project[0].proTitle != ''">
                   <!-- projects -->
                   <h2 class="text-2xl mt-6 pb-1 border-b font-semibold">
                     Projects
@@ -705,7 +764,7 @@
                   <ul class="mt-1">
                     <li class="py-2" *ngFor="let pro of project">
                       <div class="flex justify-between my-1">
-                        <strong>{{pro.name}}</strong>
+                        <strong>{{pro.proTitle}}</strong>
                         <p class="flex">
                           <span *ngFor="let lang of pro.arr"
                           class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">
@@ -715,13 +774,13 @@
                       </div>
 
                       <p class="text-xs">
-                        {{pro.description}}
+                        {{pro.discription}}
                       </p>
                     </li>
 
                   </ul>
                 </section>
-                <section *ngIf="experience[0].name != '' ">
+                <section *ngIf="experience[0].expName != '' ">
                   <!-- work experiences -->
                   <h2 class="text-2xl mt-6 pb-1 border-b font-semibold">
                     Work Experiences
@@ -729,13 +788,13 @@
                   <ul class="mt-2">
                     <li class="pt-2" *ngFor="let exp of experience">
                       <p class="flex justify-between text-sm">
-                        <strong class="text-base">{{exp.name}}</strong>{{exp.date}}
+                        <strong class="text-base">{{exp.expName}}</strong>{{exp.startDate}} - {{exp.endDate}}
                       </p>
                       <p class="flex justify-between text-base">
-                        {{exp.post}}<small>{{exp.location}}</small>
+                        {{exp.position}}
                       </p>
                       <p class="text-justify text-xs">
-                        {{exp.description}}
+                        {{exp.tech}}
                       </p>
                     </li>
 
@@ -750,10 +809,10 @@
                     <li class="pt-2" *ngFor="let item of items; let i = index">
                       <p class="flex justify-between text-sm">
                         <strong class="text-base">{{ item.eduName }}</strong
-                        >{{ item.date }}
+                        >{{ item.startDate }} - {{ item.andDate }}
                       </p>
                       <p class="flex justify-between text-sm">
-                        {{ item.description }}
+
                       </p>
                     </li>
 

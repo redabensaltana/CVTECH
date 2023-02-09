@@ -19,9 +19,9 @@ public class EducationDTO {
     private String eduName;
 
     @NotNull
-    private LocalDate startDate;
+    private String startDate;
 
-    private LocalDate andDate;
+    private String andDate;
 
     @NotNull
     private Long resumeEducationId;

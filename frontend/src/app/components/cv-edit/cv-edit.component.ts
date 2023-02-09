@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SaveService } from 'src/app/services/request/save.service';
+import { GetService } from 'src/app/services/request/get.service';
 @Component({
   selector: 'app-cv-edit',
   templateUrl: './cv-edit.component.html',
@@ -9,6 +10,16 @@ import { SaveService } from 'src/app/services/request/save.service';
 })
 export class CvEditComponent {
   formGroupEducation = new FormGroup({});
+   userInformation = {
+    firstName : '',
+    lastName : '',
+    email : '',
+    userTitle : '',
+    address : '',
+    tel : '',
+    linkedin : '',
+    github : ''
+  }
   createEducationForm() {
     for (let i = 0; i < this.items.length; i++) {
       this.formGroupEducation.addControl(
@@ -17,11 +28,11 @@ export class CvEditComponent {
       );
       this.formGroupEducation.addControl(
         'description' + i,
-        new FormControl(this.items[i].description)
+        new FormControl(this.items[i].startDate)
       );
       this.formGroupEducation.addControl(
         'date' + i,
-        new FormControl(this.items[i].date)
+        new FormControl(this.items[i].andDate)
       );
     }
   }
@@ -29,24 +40,24 @@ export class CvEditComponent {
   createExperienceForm() {
     for (let i = 0; i < this.experience.length; i++) {
       this.formGroupExperience.addControl(
-        'name' + i,
-        new FormControl(this.experience[i].name)
+        'expName' + i,
+        new FormControl(this.experience[i].expName)
       );
       this.formGroupExperience.addControl(
-        'description' + i,
-        new FormControl(this.experience[i].description)
+        'tech' + i,
+        new FormControl(this.experience[i].tech)
       );
       this.formGroupExperience.addControl(
-        'date' + i,
-        new FormControl(this.experience[i].date)
+        'startDate' + i,
+        new FormControl(this.experience[i].startDate)
       );
       this.formGroupExperience.addControl(
-        'post' + i,
-        new FormControl(this.experience[i].post)
+        'position' + i,
+        new FormControl(this.experience[i].position)
       );
       this.formGroupExperience.addControl(
-        'location' + i,
-        new FormControl(this.experience[i].location)
+        'endDate' + i,
+        new FormControl(this.experience[i].endDate)
       );
     }
   }
@@ -55,15 +66,15 @@ export class CvEditComponent {
     for (let i = 0; i < this.project.length; i++) {
       this.formGroupProject.addControl(
         'name' + i,
-        new FormControl(this.project[i].name)
+        new FormControl(this.project[i].proTitle)
       );
       this.formGroupProject.addControl(
         'description' + i,
-        new FormControl(this.project[i].description)
+        new FormControl(this.project[i].discription)
       );
       this.formGroupProject.addControl(
         'languages' + i,
-        new FormControl(this.project[i].languages)
+        new FormControl(this.project[i].techs)
       );
     }
   }
@@ -72,12 +83,17 @@ export class CvEditComponent {
     skill: new FormControl('Skills', [Validators.required]),
   });
 
-  constructor(private saveService: SaveService) {
+  constructor(private saveService: SaveService, private getService: GetService) {
     this.createEducationForm();
     this.createExperienceForm();
     this.createProjectForm();
-    console.log(this.project[0].arr);
-  }
+    // get user information
+    this.getService.getUserById().subscribe((data) => {
+      this.userInformation = data;
+      console.log(this.userInformation);
+
+    });
+}
 
   formGroupInfromation: FormGroup = new FormGroup({
     fullname: new FormControl('Full Name', [Validators.required]),
@@ -156,48 +172,75 @@ export class CvEditComponent {
 
   itemIndex = 0;
 
-  items = [{ educId: 0, eduName: '', description: '', date: '' }];
-  experience = [
-    { id: 0, name: '', description: '', date: '', post: '', location: '' },
+  items = [
+    {
+      educId: 0,
+      eduName: '',
+      startDate: '',
+      andDate: '',
+      resumeEducationId: localStorage.getItem('resume_id'),
+    },
   ];
-  project = [{ id: 0, name: '', description: '', languages: '', arr: [''] }];
+  experience = [
+    {
+      id: 0,
+      expName: '',
+      tech: '',
+      startDate: '',
+      position: '',
+      endDate: '',
+      resumeExperienceId: localStorage.getItem('resume_id'),
+    },
+  ];
+  project = [
+    {
+      id: 0,
+      proTitle: '',
+      discription: '',
+      techs: '',
+      arr: [''],
+      resumeProjectId: localStorage.getItem('resume_id'),
+    },
+  ];
 
   date: string = '';
   onChangeInupt(event: any, id: number, value: string) {
     const item = this.items.find((i) => i.educId === id);
     if (item && value === 'name') {
       item.eduName = event.target.value;
-    } else if (item && value === 'description') {
-      item.description = event.target.value;
-    } else if (item && value === 'date') {
+    } else if (item && value === 'startDate') {
       this.date = event.target.value;
-      item.date = this.convertTime(this.date);
+      item.startDate = this.convertTime(this.date);
+    } else if (item && value === 'andDate') {
+      this.date = event.target.value;
+      item.andDate = this.convertTime(this.date);
     }
   }
   onChangeInuptExperience(event: any, id: number, value: string) {
     const item = this.experience.find((i) => i.id === id);
-    if (item && value === 'name') {
-      item.name = event.target.value;
-    } else if (item && value === 'description') {
-      item.description = event.target.value;
-    } else if (item && value === 'date') {
+    if (item && value === 'expName') {
+      item.expName = event.target.value;
+    } else if (item && value === 'tech') {
+      item.tech = event.target.value;
+    } else if (item && value === 'startDate') {
       this.date = event.target.value;
-      item.date = this.convertTime(this.date);
-    } else if (item && value === 'post') {
-      item.post = event.target.value;
-    } else if (item && value === 'location') {
-      item.location = event.target.value;
+      item.startDate = this.convertTime(this.date);
+    } else if (item && value === 'position') {
+      item.position = event.target.value;
+    } else if (item && value === 'endDate') {
+      this.date = event.target.value;
+      item.endDate = this.convertTime(this.date);
     }
   }
   onChangeInuptProject(event: any, id: number, value: string) {
     const item = this.project.find((i) => i.id === id);
     if (item && value === 'name') {
-      item.name = event.target.value;
+      item.proTitle = event.target.value;
     } else if (item && value === 'description') {
-      item.description = event.target.value;
+      item.discription = event.target.value;
     } else if (item && value === 'languages') {
-      item.languages = event.target.value;
-      item.arr = item.languages.split(',');
+      item.techs = event.target.value;
+      item.arr = item.techs.split(',');
       for (let i = 0; i < item.arr.length; i++) {
         item.arr[i] = item.arr[i].replace(',', '');
       }
@@ -208,27 +251,30 @@ export class CvEditComponent {
     this.items.push({
       educId: this.items.length + 1,
       eduName: '',
-      description: '',
-      date: '',
+      startDate: '',
+      andDate: '',
+      resumeEducationId: localStorage.getItem('resume_id'),
     });
   }
   addInputExperience() {
     this.experience.push({
       id: this.experience.length + 1,
-      name: '',
-      description: '',
-      date: '',
-      post: '',
-      location: '',
+      expName: '',
+      tech: '',
+      startDate: '',
+      position: '',
+      endDate: '',
+      resumeExperienceId: localStorage.getItem('resume_id'),
     });
   }
   addInputProject() {
     this.project.push({
       id: this.project.length + 1,
-      name: '',
-      description: '',
-      languages: '',
+      proTitle: '',
+      discription: '',
+      techs: '',
       arr: [''],
+      resumeProjectId: localStorage.getItem('resume_id'),
     });
   }
   removeInput(index: number) {
@@ -272,6 +318,7 @@ export class CvEditComponent {
         .subscribe((response) => {
           console.log(response);
         });
+      console.log(this.experience[i]);
     }
   }
   saveProject() {
@@ -282,11 +329,15 @@ export class CvEditComponent {
     }
   }
   saveSkills() {
-    this.splitString(this.formGroupSkill.value.skill).forEach((skill) => {
-      this.saveService.saveSkills(skill).subscribe((response) => {
-        console.log(response);
-      });
+    const skills = {
+      id: 0,
+      skillTypes: '',
+      skillName: this.formGroupSkill.value.skill,
+      resumeSkillId: localStorage.getItem('resume_id'),
+    };
+    this.saveService.saveSkills(skills).subscribe((response) => {
+      console.log(response);
     });
+    console.log(skills);
   }
 }
-

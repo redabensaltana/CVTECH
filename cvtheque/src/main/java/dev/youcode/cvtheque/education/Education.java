@@ -37,10 +37,10 @@ public class Education {
     private String eduName;
 
     @Column(nullable = false)
-    private LocalDate startDate;
+    private String startDate;
 
     @Column
-    private LocalDate andDate;
+    private String andDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "resume_education_id_id", nullable = false)

@@ -23,9 +23,9 @@ public class ExperienceDTO {
     private String position;
 
     @NotNull
-    private LocalDate startDate;
+    private String startDate;
 
-    private LocalDate endDate;
+    private String endDate;
 
     @Size(max = 255)
     private String tech;

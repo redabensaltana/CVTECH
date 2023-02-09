@@ -57,7 +57,7 @@ public class ProjectService {
         projectDTO.setProId(project.getProId());
         projectDTO.setProTitle(project.getProTitle());
         projectDTO.setTechs(project.getTechs());
-        projectDTO.setProRepo(project.getProRepo());
+        projectDTO.setDiscription(project.getDiscription());
         projectDTO.setResumeProjectId(project.getResumeProjectId() == null ? null : project.getResumeProjectId().getResumeId());
         return projectDTO;
     }
@@ -65,7 +65,7 @@ public class ProjectService {
     private Project mapToEntity(final ProjectDTO projectDTO, final Project project) {
         project.setProTitle(projectDTO.getProTitle());
         project.setTechs(projectDTO.getTechs());
-        project.setProRepo(projectDTO.getProRepo());
+        project.setDiscription(projectDTO.getDiscription());
         final Resume resumeProjectId = projectDTO.getResumeProjectId() == null ? null : resumeRepository.findById(projectDTO.getResumeProjectId())
                 .orElseThrow(() -> new NotFoundException("resumeProjectId not found"));
         project.setResumeProjectId(resumeProjectId);

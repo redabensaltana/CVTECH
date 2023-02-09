@@ -31,7 +31,7 @@ public class Skill {
     )
     private Long skillId;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String skillType;
 
     @Column(nullable = false)

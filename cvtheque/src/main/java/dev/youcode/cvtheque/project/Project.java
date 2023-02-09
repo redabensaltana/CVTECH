@@ -39,7 +39,7 @@ public class Project {
     private String techs;
 
     @Column
-    private String proRepo;
+    private String discription;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "resume_project_id_id", nullable = false)

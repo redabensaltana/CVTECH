@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserResponse } from 'src/app/models/user-response';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,10 @@ export class GetService {
   getUsers(){
     return this.http.get('http://localhost:8080/api/users');
   }
+  //get user by id
+  getUserById(){
+    return this.http.get<UserResponse>('http://localhost:8080/api/users/' + localStorage.getItem('id'));
+  }
+
 
 }

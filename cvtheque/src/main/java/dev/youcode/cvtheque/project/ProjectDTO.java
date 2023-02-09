@@ -21,7 +21,7 @@ public class ProjectDTO {
     private String techs;
 
     @Size(max = 255)
-    private String proRepo;
+    private String discription;
 
     @NotNull
     private Long resumeProjectId;

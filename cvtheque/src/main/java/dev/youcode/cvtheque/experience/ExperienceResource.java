@@ -34,6 +34,7 @@ public class ExperienceResource {
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Long> createExperience(
             @RequestBody @Valid final ExperienceDTO experienceDTO) {
+        System.out.println("added");
         return new ResponseEntity<>(experienceService.create(experienceDTO), HttpStatus.CREATED);
     }
 

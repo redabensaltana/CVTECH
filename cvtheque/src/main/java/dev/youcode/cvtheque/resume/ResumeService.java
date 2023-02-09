@@ -66,4 +66,9 @@ public class ResumeService {
         return resume;
     }
 
+    public ResumeDTO getByLastname(String lname) {
+        User user = userRepository.findByLastName(lname);
+        Resume resume = resumeRepository.findResumeByUserResumeId(user.getUserId());
+        return mapToDTO(resume,new ResumeDTO());
+    }
 }

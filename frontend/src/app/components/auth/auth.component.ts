@@ -36,6 +36,7 @@ export class AuthComponent {
             this.accountService.changeStatus(true)
             this.localStorageService.set("token",res.token);
             this.localStorageService.set("id",res.id);
+            this.localStorageService.set("resume_id",res.resume_id);
             this.router.navigateByUrl('/generatecv');
             console.log(res)
           }else{

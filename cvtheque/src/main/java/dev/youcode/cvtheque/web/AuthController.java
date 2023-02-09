@@ -62,7 +62,14 @@ public class AuthController {
                     .build();
             String jwtAccessToken=jwtEncoder.encode(JwtEncoderParameters.from(jwtClaimsSet)).getTokenValue();
             Long id = userService.findUserByEmail(subject).getUserId();
+
+            if(!userService.findUserByEmail(subject).getUserTitle().equals("CME")) {
+                Long resume_id = userService.findUserByEmail(subject).getUserResumeId().getResumeId();
+                return new AuthResponse("Authentication succeeded!", jwtAccessToken, id, resume_id);
+            }
             return new AuthResponse("Authentication succeeded!", jwtAccessToken, id);
+
+
         }catch (AuthenticationException e){
             System.out.println(e.getMessage());
         }
