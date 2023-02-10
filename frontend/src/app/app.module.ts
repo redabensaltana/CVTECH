@@ -11,6 +11,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AppInterceptor} from "./interceptors/app-interceptor.interceptor";
 import { CvEditComponent } from './components/cv-edit/cv-edit.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { PostcardComponent } from './components/postcard/postcard.component';
+import { ApprenantProfileComponent } from './components/apprenant-profile/apprenant-profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     GenerateCvComponent,
     AuthComponent,
     CvEditComponent,
-    NavbarComponent
+    NavbarComponent,
+    PostcardComponent,
+    ApprenantProfileComponent
   ],
   imports: [
     BrowserModule,

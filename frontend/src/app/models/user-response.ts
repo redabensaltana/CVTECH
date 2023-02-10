@@ -7,5 +7,6 @@ export interface UserResponse {
   tel : string;
   linkedin : string;
   github : string;
+  role : string;
 }
 

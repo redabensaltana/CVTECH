@@ -77,6 +77,7 @@ public class UserService {
         userDTO.setTel(user.getTel());
         userDTO.setLinkden(user.getLinkden());
         userDTO.setGithub(user.getGithub());
+        userDTO.setRole(user.getRole());
         return userDTO;
     }
 
