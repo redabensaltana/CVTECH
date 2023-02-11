@@ -32,14 +32,25 @@ export class AuthComponent {
     if(values.email && values.password){
       this.authService.login(values.email,values.password).subscribe(
         (res) => {
-          if(res.status == 200){
+          console.log(res.role);
+          if(res.status == 200 && res.role == "DEV" && res.token){
             this.accountService.changeStatus(true)
             this.localStorageService.set("token",res.token);
             this.localStorageService.set("id",res.id);
             this.localStorageService.set("resume_id",res.resume_id);
+            this.localStorageService.set("role",res.role);
             this.router.navigateByUrl('/generatecv');
             console.log(res)
-          }else{
+          }else if(res.status == 200 && res.role == "CME" && res.token != null){
+            this.accountService.changeStatus(true)
+            this.localStorageService.set("token",res.token);
+            this.localStorageService.set("id",res.id);
+            this.localStorageService.set("resume_id",res.resume_id);
+            this.localStorageService.set("role",res.role);
+            this.router.navigateByUrl('/apprenants');
+            console.log(res)
+          }
+          else{
             this.router.navigateByUrl('/login');
           }
         }

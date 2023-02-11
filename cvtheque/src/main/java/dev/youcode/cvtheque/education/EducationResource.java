@@ -26,8 +26,8 @@ public class EducationResource {
     }
 
     @GetMapping("/{educId}")
-    public ResponseEntity<EducationDTO> getEducation(@PathVariable final Long educId) {
-        return ResponseEntity.ok(educationService.get(educId));
+    public ResponseEntity<List<EducationDTO>> getEducation(@PathVariable final Long educId) {
+        return ResponseEntity.ok(educationService.findEducationByResumeEducationId(educId));
     }
 
     @PostMapping

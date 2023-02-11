@@ -31,6 +31,7 @@ public class UserResource {
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {
+
         return ResponseEntity.ok(userService.findAll());
     }
 

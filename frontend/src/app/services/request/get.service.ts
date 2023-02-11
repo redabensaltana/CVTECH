@@ -32,6 +32,21 @@ export class GetService {
   getUserById(){
     return this.http.get<UserResponse>('http://localhost:8080/api/users/' + localStorage.getItem('id'));
   }
-
+  //get user details by id
+  getUserDetails(id : number){
+    return this.http.get('http://localhost:8080/api/users/' + id);
+  }
+  //get resume by id
+  getResumeById(id : number){
+    return this.http.get('http://localhost:8080/api/resumes/resume/' + id);
+  }
+  //get educations by resume id
+  getEducationsById(id : number){
+    return this.http.get('http://localhost:8080/api/educations/' + id);
+  }
+  //get experiences by resume id
+  getExperiencesById(id : number){
+    return this.http.get('http://localhost:8080/api/experiences/' + id);
+  }
 
 }

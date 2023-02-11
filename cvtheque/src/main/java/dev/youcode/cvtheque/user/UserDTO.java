@@ -46,4 +46,6 @@ public class UserDTO {
     private String password;
     @Size(max = 255)
     private String role;
+
+    private Long resumeId;
 }

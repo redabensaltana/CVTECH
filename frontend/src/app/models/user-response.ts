@@ -4,9 +4,9 @@ export interface UserResponse {
   email: string;
   userTitle: string;
   address: string;
-  tel : string;
-  linkedin : string;
-  github : string;
-  role : string;
+  tel: string;
+  linkedin: string;
+  github: string;
+  role: string;
+  resumeId: string;
 }
-

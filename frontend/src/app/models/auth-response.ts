@@ -4,4 +4,5 @@ export interface AuthResponse {
   token: string;
   id : string;
   resume_id : string;
+  role : string;
 }

@@ -26,7 +26,7 @@ public class ExperienceResource {
     }
 
     @GetMapping("/{expId}")
-    public ResponseEntity<ExperienceDTO> getExperience(@PathVariable final Long expId) {
+    public ResponseEntity<List<ExperienceDTO>> getExperience(@PathVariable final Long expId) {
         return ResponseEntity.ok(experienceService.get(expId));
     }
 

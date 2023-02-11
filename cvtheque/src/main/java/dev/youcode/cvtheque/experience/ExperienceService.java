@@ -30,10 +30,11 @@ public class ExperienceService {
                 .collect(Collectors.toList());
     }
 
-    public ExperienceDTO get(final Long expId) {
-        return experienceRepository.findById(expId)
-                .map(experience -> mapToDTO(experience, new ExperienceDTO()))
-                .orElseThrow(() -> new NotFoundException());
+    public List<ExperienceDTO> get(final Long expId) {
+        List<Experience> experiences = experienceRepository.findExperienceByResumeExperienceId(expId);
+        return
+                experiences.stream().map(experience -> mapToDTO(experience, new ExperienceDTO()))
+                .collect(Collectors.toList());
     }
 
     public Long create(final ExperienceDTO experienceDTO) {

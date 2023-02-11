@@ -54,5 +54,8 @@ public class ResumeResource {
         resumeService.delete(resumeId);
         return ResponseEntity.noContent().build();
     }
-
+    @GetMapping("/resume/{userId}")
+    public ResponseEntity<ResumeDTO> getResumeById(@PathVariable final Long userId) {
+        return ResponseEntity.ok(resumeService.getByuserId(userId));
+    }
 }

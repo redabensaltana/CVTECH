@@ -30,10 +30,15 @@ public class ResumeService {
                 .collect(Collectors.toList());
     }
 
+
     public ResumeDTO get(final Long resumeId) {
         return resumeRepository.findById(resumeId)
                 .map(resume -> mapToDTO(resume, new ResumeDTO()))
                 .orElseThrow(() -> new NotFoundException());
+    }
+    public ResumeDTO getByuserId(final Long userId) {
+        Resume resume =  resumeRepository.findResumeByUserResumeId(userId);
+        return mapToDTO(resume, new ResumeDTO());
     }
 
     public Long create(final ResumeDTO resumeDTO) {
