@@ -126,9 +126,9 @@
                 <section >
                 <strong class="text-xl font-medium" >Skills</strong>
                 <ul class="mt-2 mb-10">
-                  <!-- loop on split string function -->
-                  <li class="px-2 mt-1" >
-                    skills
+                  <li class="px-2 mt-1" *ngFor="let skill of splitString(skill.skillName)" >
+                   {{skill}}
+
                   </li>
                 </ul>
                 </section>
@@ -144,25 +144,25 @@
               </div>
               <!-- info -->
               <div class="w-4/6">
-                <section >
+                 <section *ngIf=" projects[0].proTitle != ''">
                   <!-- projects -->
                   <h2 class="text-2xl mt-6 pb-1 border-b font-semibold">
                     Projects
                   </h2>
                   <ul class="mt-1">
-                    <li class="py-2" >
+                    <li class="py-2" *ngFor="let pro of projects">
                       <div class="flex justify-between my-1">
-                        <strong>project title</strong>
+                        <strong>{{pro.proTitle}}</strong>
                         <p class="flex">
-                          <span
+                          <span *ngFor="let lang of splitString(pro.techs)"
                           class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">
-                           languges
+                            {{lang}}
                         </span>
                         </p>
                       </div>
 
                       <p class="text-xs">
-                        discription
+                        {{pro.discription}}
                       </p>
                     </li>
 

@@ -48,5 +48,12 @@ export class GetService {
   getExperiencesById(id : number){
     return this.http.get('http://localhost:8080/api/experiences/' + id);
   }
-
+  //get projects by resume id
+  getProjectsById(id : number){
+    return this.http.get('http://localhost:8080/api/projects/' + id);
+  }
+  //get skills by resume id
+  getSkillById(id : number){
+    return this.http.get('http://localhost:8080/api/skills/' + id);
+  }
 }
