@@ -38,8 +38,8 @@ public class CommentResource {
 
     @PutMapping("/{commentId}")
     public ResponseEntity<Void> updateComment(@PathVariable final Long commentId,
-            @RequestBody @Valid final CommentDTO commentDTO) {
-        commentService.update(commentId, commentDTO);
+            @RequestBody @Valid final String body) {
+        commentService.update(commentId, body);
         return ResponseEntity.ok().build();
     }
 
@@ -50,4 +50,8 @@ public class CommentResource {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/commentByResume/{resumeId}")
+    public ResponseEntity<CommentDTO> getCommentByResume(@PathVariable final Long resumeId) {
+        return ResponseEntity.ok(commentService.getByResume(resumeId));
+    }
 }

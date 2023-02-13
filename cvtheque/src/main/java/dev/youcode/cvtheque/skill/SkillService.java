@@ -32,9 +32,8 @@ public class SkillService {
     }
 
     public SkillDTO get(final Long skillId) {
-        return skillRepository.findById(skillId)
-                .map(skill -> mapToDTO(skill, new SkillDTO()))
-                .orElseThrow(() -> new NotFoundException());
+        Skill skill = skillRepository.findByResumeSkillId(skillId);
+        return mapToDTO(skill, new SkillDTO());
     }
 
     public Long create(final SkillDTO skillDTO) {

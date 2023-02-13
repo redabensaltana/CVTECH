@@ -14,7 +14,7 @@ public class CommentDTO {
     @NotNull
     private String commentBody;
 
-    @NotNull
+//    @NotNull
     private Long userCommentId;
 
     @NotNull

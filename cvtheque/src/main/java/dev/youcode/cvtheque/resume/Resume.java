@@ -40,6 +40,10 @@ public class Resume {
     )
     private Long resumeId;
 
+    @Column
+    private String status;
+
+
     @OneToMany(mappedBy = "resumeExperienceId")
     private Set<Experience> resumeExperienceIdExperiences;
 

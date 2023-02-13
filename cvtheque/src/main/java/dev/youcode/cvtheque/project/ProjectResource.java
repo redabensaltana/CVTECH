@@ -26,7 +26,7 @@ public class ProjectResource {
     }
 
     @GetMapping("/{proId}")
-    public ResponseEntity<ProjectDTO> getProject(@PathVariable final Long proId) {
+    public ResponseEntity<List<ProjectDTO>> getProject(@PathVariable final Long proId) {
         return ResponseEntity.ok(projectService.get(proId));
     }
 

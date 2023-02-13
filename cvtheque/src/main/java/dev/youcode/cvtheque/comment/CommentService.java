@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -46,10 +47,10 @@ public class CommentService {
         return commentRepository.save(comment).getCommentId();
     }
 
-    public void update(final Long commentId, final CommentDTO commentDTO) {
+    public void update(final Long commentId, final String body) {
         final Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new NotFoundException());
-        mapToEntity(commentDTO, comment);
+        comment.setCommentBody(body);
         commentRepository.save(comment);
     }
 
@@ -74,6 +75,14 @@ public class CommentService {
                 .orElseThrow(() -> new NotFoundException("resumeCommentId not found"));
         comment.setResumeCommentId(resumeCommentId);
         return comment;
+    }
+
+
+    public CommentDTO getByResume(final Long resumeId) {
+        Optional<Resume> resume = resumeRepository.findById(resumeId);
+        Resume resume1 = resume.get();
+        Comment commentByResume = commentRepository.findCommentByResumeCommentId(resume1);
+        return mapToDTO(commentByResume, new CommentDTO());
     }
 
 }

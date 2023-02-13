@@ -1,6 +1,8 @@
 package dev.youcode.cvtheque.resume;
 
 
+import dev.youcode.cvtheque.comment.Comment;
+import dev.youcode.cvtheque.comment.CommentRepository;
 import dev.youcode.cvtheque.user.User;
 import dev.youcode.cvtheque.user.UserRepository;
 import dev.youcode.cvtheque.util.NotFoundException;
@@ -16,11 +18,14 @@ public class ResumeService {
 
     private final ResumeRepository resumeRepository;
     private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
 
     public ResumeService(final ResumeRepository resumeRepository,
-            final UserRepository userRepository) {
+                         final UserRepository userRepository,
+                         final CommentRepository commentRepository) {
         this.resumeRepository = resumeRepository;
         this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
     }
 
     public List<ResumeDTO> findAll() {
@@ -43,7 +48,10 @@ public class ResumeService {
 
     public Long create(final ResumeDTO resumeDTO) {
         final Resume resume = new Resume();
+        final Comment comment = new Comment();
         mapToEntity(resumeDTO, resume);
+        comment.setResumeCommentId(resume);
+        commentRepository.save(comment);
         return resumeRepository.save(resume).getResumeId();
     }
 
@@ -61,6 +69,7 @@ public class ResumeService {
     private ResumeDTO mapToDTO(final Resume resume, final ResumeDTO resumeDTO) {
         resumeDTO.setResumeId(resume.getResumeId());
         resumeDTO.setUserResumeId(resume.getUserResumeId() == null ? null : resume.getUserResumeId().getUserId());
+        resumeDTO.setStatus(resume.getStatus());
         return resumeDTO;
     }
 
@@ -75,5 +84,12 @@ public class ResumeService {
         User user = userRepository.findByLastName(lname);
         Resume resume = resumeRepository.findResumeByUserResumeId(user.getUserId());
         return mapToDTO(resume,new ResumeDTO());
+    }
+
+    public void updateStatus(final Long resumeId, final String status) {
+        final Resume resume = resumeRepository.findById(resumeId)
+                .orElseThrow(() -> new NotFoundException());
+        resume.setStatus(status);
+        resumeRepository.save(resume);
     }
 }

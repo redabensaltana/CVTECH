@@ -20,6 +20,13 @@ export class SaveService {
   saveSkills(skills : any){
     return this.http.post('http://localhost:8080/api/skills', skills);
   }
-
+  sendComment(id : number, body : string)
+  {
+    return this.http.put('http://localhost:8080/api/comments/' + id, body);
+  }
+  sendResumeStatus(id : number, body : string)
+  {
+    return this.http.put('http://localhost:8080/api/resumes/status/' + id, body);
+  }
 
 }

@@ -39,7 +39,7 @@ public class Comment {
     private String commentBody;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_comment_id_id", nullable = false)
+    @JoinColumn(name = "user_comment_id_id")
     private User userCommentId;
 
     @OneToMany(mappedBy = "commentReplyId")

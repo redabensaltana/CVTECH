@@ -47,6 +47,12 @@ public class ResumeResource {
         resumeService.update(resumeId, resumeDTO);
         return ResponseEntity.ok().build();
     }
+    @PutMapping("/status/{resumeId}")
+    public ResponseEntity<Void> updateResume(@PathVariable final Long resumeId,
+                                             @RequestBody @Valid final String body) {
+        resumeService.updateStatus(resumeId, body);
+        return ResponseEntity.ok().build();
+    }
 
     @DeleteMapping("/{resumeId}")
     @ApiResponse(responseCode = "204")

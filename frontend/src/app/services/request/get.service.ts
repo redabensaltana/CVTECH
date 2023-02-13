@@ -56,4 +56,11 @@ export class GetService {
   getSkillById(id : number){
     return this.http.get('http://localhost:8080/api/skills/' + id);
   }
+
+  //todo get comment to display
+  getCommentById(id : number){
+    return this.http.get('http://localhost:8080/api/comments/commentByResume/' + id);
+  }
+  
+  //todo update status
 }

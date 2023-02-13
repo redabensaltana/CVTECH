@@ -30,10 +30,10 @@ public class ProjectService {
                 .collect(Collectors.toList());
     }
 
-    public ProjectDTO get(final Long proId) {
-        return projectRepository.findById(proId)
-                .map(project -> mapToDTO(project, new ProjectDTO()))
-                .orElseThrow(() -> new NotFoundException());
+    public List<ProjectDTO> get(final Long proId) {
+        return projectRepository.findProjectsByResumeProjectId(proId)
+                .stream().map(project -> mapToDTO(project, new ProjectDTO()))
+                .collect(Collectors.toList());
     }
 
     public Long create(final ProjectDTO projectDTO) {
