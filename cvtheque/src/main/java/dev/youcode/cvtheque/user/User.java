@@ -1,25 +1,19 @@
 package dev.youcode.cvtheque.user;
 
+
 import dev.youcode.cvtheque.comment.Comment;
 import dev.youcode.cvtheque.resume.Resume;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
-import java.time.OffsetDateTime;
-import java.util.Set;
+import dev.youcode.cvtheque.rule.Rule;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -66,19 +60,23 @@ public class User {
 
     @Column
     private String github;
+    @Column(nullable = false)
+    private String password;
 
     @OneToMany(mappedBy = "userCommentId")
     private Set<Comment> userCommentIdComments;
 
     @OneToOne(mappedBy = "userResumeId", fetch = FetchType.LAZY)
     private Resume userResumeId;
+    @Column
+    private String role;
 
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_rule_id",
+            joinColumns = @JoinColumn(name = "user_user_id"),
+            inverseJoinColumns = @JoinColumn(name = "rule_id")
+    )
+    private List<Rule> userRuleIdRules;
 
 }

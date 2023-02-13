@@ -12,7 +12,6 @@ public class SkillDTO {
 
     private Long skillId;
 
-    @NotNull
     @Size(max = 255)
     private String skillType;
 

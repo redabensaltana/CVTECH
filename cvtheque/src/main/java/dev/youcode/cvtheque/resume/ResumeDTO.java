@@ -11,7 +11,9 @@ public class ResumeDTO {
 
     private Long resumeId;
 
-    @NotNull
+//    @NotNull
     private Long userResumeId;
+
+    private String status;
 
 }

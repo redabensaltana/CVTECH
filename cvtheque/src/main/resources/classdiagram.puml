@@ -1,0 +1,79 @@
+@startuml
+
+class           User{
+-userId   : Integer
+-firstName : String
+-userTitle : String
+-lastName : String
+-email    : String
+-adresse :String
+-password : String
+-image    :text
+-role     : String
+-tel    :String
+-Linkein  :String
+-Github   :String
+{method} singin(auth):Boolean
+{method} singup(user):Boolean
+
+}
+class Comment {
+- commentId : Integer
+- commentBody : text
+}
+class Resume {
+- resumeId : Integer
+}
+class           Experience{
+-expId   : Integer
+-expName : String
+-position     : String
+-startDate     : Date
+-endDate     : Date
+-description     :text
+
+}
+class           Education{
+-eduId   : Integer
+-eduName : String
+-startDate : Date
+-endDate   : Date
+}
+
+class           Project{
+-proId   : Integer
+-proTitle : Text
+-tech     : String[]
+-proRepo : String
+}
+class           Skills{
+-skillId   : Integer
+-skillType : Stiring
+-skillName : String
+}
+class           Language{
+-langId   : Integer
+-langName : String
+-langLevel : String
+}
+class           Hobbies{
+-hobId   : Integer
+-hobName : String
+}
+
+'class Reply {
+'- replyId : Integer
+'- replyBody : text
+'}
+
+User "1" *--- "1" Resume : have
+Resume "1" *--- "many" Experience : have
+Resume "1" *--- "many" Education : have
+Resume "1" *--- "many" Skills : have
+Resume "1" *--- "many" Comment : have
+Resume "1" *--- "many" Language : have
+Resume "1" *--- "many" Project : have
+Resume "1" *--- "many" Hobbies : have
+'Comment "1" *-- "many" Reply : have
+Comment "many" *--- "1" User : have
+@enduml

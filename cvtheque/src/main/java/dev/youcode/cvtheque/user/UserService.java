@@ -1,19 +1,27 @@
 package dev.youcode.cvtheque.user;
 
+
+import dev.youcode.cvtheque.resume.ResumeRepository;
 import dev.youcode.cvtheque.util.NotFoundException;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 
 
 @Service
 public class UserService {
+    private  final PasswordEncoder passwordEncoder;
 
     private final UserRepository userRepository;
 
-    public UserService(final UserRepository userRepository) {
+
+    public UserService(PasswordEncoder passwordEncoder, final UserRepository userRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+
     }
 
     public List<UserDTO> findAll() {
@@ -30,9 +38,13 @@ public class UserService {
     }
 
     public Long create(final UserDTO userDTO) {
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         final User user = new User();
         mapToEntity(userDTO, user);
-        return userRepository.save(user).getUserId();
+
+        Long id  = userRepository.save(user).getUserId();
+
+        return id;
     }
 
     public void update(final Long userId, final UserDTO userDTO) {
@@ -40,6 +52,15 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException());
         mapToEntity(userDTO, user);
         userRepository.save(user);
+    }
+    // how to fix this error .map not working with the object type of User just working with type option or a list of array when I get user by findByEmail, the functionname's findByEmail is not working with the object type of User
+//    public void delete(final Long userId) {
+//        final User user = userRepository.findById(userId)
+//                .orElseThrow(() -> new NotFoundException());
+//        userRepository.delete(user);
+//    }
+    public User findUserByEmail(final String email) {
+       return userRepository.findByEmail(email) ;
     }
 
     public void delete(final Long userId) {
@@ -56,6 +77,7 @@ public class UserService {
         userDTO.setTel(user.getTel());
         userDTO.setLinkden(user.getLinkden());
         userDTO.setGithub(user.getGithub());
+        userDTO.setRole(user.getRole());
         return userDTO;
     }
 
@@ -68,6 +90,8 @@ public class UserService {
         user.setTel(userDTO.getTel());
         user.setLinkden(userDTO.getLinkden());
         user.setGithub(userDTO.getGithub());
+        user.setPassword(userDTO.getPassword());
+        user.setRole(userDTO.getRole());
         return user;
     }
 

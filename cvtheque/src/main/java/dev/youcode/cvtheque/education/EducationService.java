@@ -1,12 +1,14 @@
 package dev.youcode.cvtheque.education;
 
+
 import dev.youcode.cvtheque.resume.Resume;
 import dev.youcode.cvtheque.resume.ResumeRepository;
 import dev.youcode.cvtheque.util.NotFoundException;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -26,6 +28,13 @@ public class EducationService {
         return educations.stream()
                 .map((education) -> mapToDTO(education, new EducationDTO()))
                 .collect(Collectors.toList());
+    }
+    public List<EducationDTO> findEducationByResumeEducationId(final Long educId) {
+        List<Education> educations = educationRepository.findEducationByResumeEducationId(educId);
+        return educations.stream()
+                .map((education) -> mapToDTO(education, new EducationDTO()))
+                .collect(Collectors.toList());
+
     }
 
     public EducationDTO get(final Long educId) {

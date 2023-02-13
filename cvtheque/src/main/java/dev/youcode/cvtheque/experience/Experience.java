@@ -1,23 +1,16 @@
 package dev.youcode.cvtheque.experience;
 
+
 import dev.youcode.cvtheque.resume.Resume;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 
 @Entity
@@ -47,10 +40,10 @@ public class Experience {
     private String position;
 
     @Column(nullable = false)
-    private LocalDate startDate;
+    private String startDate;
 
     @Column
-    private LocalDate endDate;
+    private String endDate;
 
     @Column
     private String tech;
@@ -59,12 +52,6 @@ public class Experience {
     @JoinColumn(name = "resume_experience_id_id", nullable = false)
     private Resume resumeExperienceId;
 
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
 
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

@@ -2,18 +2,12 @@ package dev.youcode.cvtheque.education;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
-import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -32,14 +26,15 @@ public class EducationResource {
     }
 
     @GetMapping("/{educId}")
-    public ResponseEntity<EducationDTO> getEducation(@PathVariable final Long educId) {
-        return ResponseEntity.ok(educationService.get(educId));
+    public ResponseEntity<List<EducationDTO>> getEducation(@PathVariable final Long educId) {
+        return ResponseEntity.ok(educationService.findEducationByResumeEducationId(educId));
     }
 
     @PostMapping
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Long> createEducation(
             @RequestBody @Valid final EducationDTO educationDTO) {
+        System.out.println(educationDTO.getEducId()  + " " + educationDTO.getEduName());
         return new ResponseEntity<>(educationService.create(educationDTO), HttpStatus.CREATED);
     }
 

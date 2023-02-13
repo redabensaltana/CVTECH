@@ -1,12 +1,15 @@
 package dev.youcode.cvtheque.skill;
 
+
+import com.fasterxml.jackson.databind.util.BeanUtil;
 import dev.youcode.cvtheque.resume.Resume;
 import dev.youcode.cvtheque.resume.ResumeRepository;
 import dev.youcode.cvtheque.util.NotFoundException;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -29,9 +32,8 @@ public class SkillService {
     }
 
     public SkillDTO get(final Long skillId) {
-        return skillRepository.findById(skillId)
-                .map(skill -> mapToDTO(skill, new SkillDTO()))
-                .orElseThrow(() -> new NotFoundException());
+        Skill skill = skillRepository.findByResumeSkillId(skillId);
+        return mapToDTO(skill, new SkillDTO());
     }
 
     public Long create(final SkillDTO skillDTO) {
@@ -60,6 +62,7 @@ public class SkillService {
     }
 
     private Skill mapToEntity(final SkillDTO skillDTO, final Skill skill) {
+
         skill.setSkillType(skillDTO.getSkillType());
         skill.setSkillName(skillDTO.getSkillName());
         final Resume resumeSkillId = skillDTO.getResumeSkillId() == null ? null : resumeRepository.findById(skillDTO.getResumeSkillId())

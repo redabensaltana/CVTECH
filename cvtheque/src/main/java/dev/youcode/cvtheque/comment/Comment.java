@@ -1,26 +1,18 @@
 package dev.youcode.cvtheque.comment;
 
+
 import dev.youcode.cvtheque.reply.Reply;
 import dev.youcode.cvtheque.resume.Resume;
 import dev.youcode.cvtheque.user.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
-import java.time.OffsetDateTime;
-import java.util.Set;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.OffsetDateTime;
+import java.util.Set;
 
 
 @Entity
@@ -47,7 +39,7 @@ public class Comment {
     private String commentBody;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_comment_id_id", nullable = false)
+    @JoinColumn(name = "user_comment_id_id")
     private User userCommentId;
 
     @OneToMany(mappedBy = "commentReplyId")
@@ -57,12 +49,5 @@ public class Comment {
     @JoinColumn(name = "resume_comment_id_id", nullable = false)
     private Resume resumeCommentId;
 
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

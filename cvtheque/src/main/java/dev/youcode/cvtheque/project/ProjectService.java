@@ -1,12 +1,14 @@
 package dev.youcode.cvtheque.project;
 
+
 import dev.youcode.cvtheque.resume.Resume;
 import dev.youcode.cvtheque.resume.ResumeRepository;
 import dev.youcode.cvtheque.util.NotFoundException;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -28,10 +30,10 @@ public class ProjectService {
                 .collect(Collectors.toList());
     }
 
-    public ProjectDTO get(final Long proId) {
-        return projectRepository.findById(proId)
-                .map(project -> mapToDTO(project, new ProjectDTO()))
-                .orElseThrow(() -> new NotFoundException());
+    public List<ProjectDTO> get(final Long proId) {
+        return projectRepository.findProjectsByResumeProjectId(proId)
+                .stream().map(project -> mapToDTO(project, new ProjectDTO()))
+                .collect(Collectors.toList());
     }
 
     public Long create(final ProjectDTO projectDTO) {
@@ -55,7 +57,7 @@ public class ProjectService {
         projectDTO.setProId(project.getProId());
         projectDTO.setProTitle(project.getProTitle());
         projectDTO.setTechs(project.getTechs());
-        projectDTO.setProRepo(project.getProRepo());
+        projectDTO.setDiscription(project.getDiscription());
         projectDTO.setResumeProjectId(project.getResumeProjectId() == null ? null : project.getResumeProjectId().getResumeId());
         return projectDTO;
     }
@@ -63,7 +65,7 @@ public class ProjectService {
     private Project mapToEntity(final ProjectDTO projectDTO, final Project project) {
         project.setProTitle(projectDTO.getProTitle());
         project.setTechs(projectDTO.getTechs());
-        project.setProRepo(projectDTO.getProRepo());
+        project.setDiscription(projectDTO.getDiscription());
         final Resume resumeProjectId = projectDTO.getResumeProjectId() == null ? null : resumeRepository.findById(projectDTO.getResumeProjectId())
                 .orElseThrow(() -> new NotFoundException("resumeProjectId not found"));
         project.setResumeProjectId(resumeProjectId);
